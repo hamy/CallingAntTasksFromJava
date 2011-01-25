@@ -1,0 +1,4 @@
+Preparations
+
+  Download  Apache Ant version ${antVersion} from the {{{ ${antWebSite} } Ant web site }}
+  and install it  both as tool and also in the local Maven repository.

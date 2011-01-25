@@ -1,8 +1,96 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>CallingAntTasksFromJava</groupId>
-  <artifactId>CallingAntTasksFromJava</artifactId>
-  <version>1.0.0</version>
-  <name>CallingAntTasksFromJava</name>
-  <description>Some examples for calling the Ant API from Java client programs</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<artifactId>Github-Master-POM</artifactId>
+		<groupId>Github-Master-POM</groupId>
+		<version>1.0.0</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>CallingAntTasksFromJava</groupId>
+	<artifactId>CallingAntTasksFromJava</artifactId>
+	<version>1.0.0</version>
+	<name>CallingAntTasksFromJava</name>
+
+	<description>Some examples for calling the Ant API from Java client
+		programs</description>
+
+	<scm>
+		<connection>${hamyScmConnectionBase}/CallingAntTasksFromJava.git
+		</connection>
+		<developerConnection>${hamyScmDeveloperConnectionBase}/CallingAntTasksFromJava.git
+		</developerConnection>
+		<url>${hamyScmUrlBase}/CallingAntTasksFromJava</url>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant</artifactId>
+			<version>${antVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junitVersion}</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4jVersion}</version>
+			<type>jar</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${mavenCompilerPluginVersion}</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${mavenSurefirePluginVersion}</version>
+				<configuration>
+					<systemProperties>
+						<property>
+							<name>log4j.configuration</name>
+							<value>log4j-for-unit-tests.xml</value>
+						</property>
+					</systemProperties>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>${mavenSurefireReportPluginVersion}</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<properties>
+		<antVersion>1.8.2</antVersion>
+		<antWebSite>http://ant.apache.org</antWebSite>
+		<junitVersion>4.8.2</junitVersion>
+		<slf4jVersion>1.6.1</slf4jVersion>
+		<mavenCompilerPluginVersion>2.3.2</mavenCompilerPluginVersion>
+		<mavenSurefirePluginVersion>2.7.1</mavenSurefirePluginVersion>
+		<mavenSurefireReportPluginVersion>2.7.1
+		</mavenSurefireReportPluginVersion>
+	</properties>
+
 </project>
