@@ -6,13 +6,10 @@ package catfj.simpletasks;
 import org.apache.tools.ant.taskdefs.Echo;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.Properties;
 
 import org.junit.Before;
 import org.junit.Test;
