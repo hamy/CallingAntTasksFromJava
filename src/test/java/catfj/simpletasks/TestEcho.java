@@ -5,10 +5,12 @@ package catfj.simpletasks;
 
 import org.apache.tools.ant.taskdefs.Echo;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -18,7 +20,7 @@ import org.junit.Test;
 import catfj.AbstractCatfjTestCase;
 
 /**
- * This is the base class for test cases of this projects. It provides logging.
+ * Test case for the Ant "echo" task.
  */
 public class TestEcho extends AbstractCatfjTestCase {
 
@@ -43,14 +45,29 @@ public class TestEcho extends AbstractCatfjTestCase {
 	@Test
 	public void testEchoToFile() throws Exception {
 		String mn = debugEntering("testEchoToFile");
-		echo.setMessage("Hello world (from " + mn + ")");
+		String msg = "Hello world (from " + mn + ")";
+		echo.setMessage(msg);
 		File file = File.createTempFile(mn, ".txt");
-		debug(mn,"file: ",file);
+		debug(mn, "file: ", file);
 		echo.setFile(file);
 		echo.execute();
 		assertTrue(file.exists());
 		assertTrue(file.isFile());
-		assertTrue(file.length()>0);
+		assertTrue(file.length() > 0);
+		StringBuilder sb = new StringBuilder();
+		FileInputStream fis = new FileInputStream(file);
+		while (true) {
+			int ch = fis.read();
+			if (ch < 0) {
+				break;
+			}
+			sb.append((char) ch);
+		}
+		fis.close();
+		String msg2 = sb.toString().trim();
+		debug(mn, "expected file contents: ", msg);
+		debug(mn, "actual file contents (trimmed): ", msg2);
+		assertEquals(msg, msg2);
 		debugLeaving(mn);
 	}
 }
